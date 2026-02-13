@@ -26,6 +26,12 @@ const formSchema = z.object({
 });
 
 export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
+  const handleGoogleLogin=async()=>{
+      const data= await authClient.signIn.social({
+        provider:"google",
+        callbackURL:"http://localhost:3000/"
+      })
+    }
   const form=useForm({
     defaultValues:{
       name:"",
@@ -51,12 +57,6 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
       }
     }
   });
-  const handleGoogleLogin=async()=>{
-      const data= await authClient.signIn.social({
-        provider:"google",
-        callbackURL:"http://localhost:3000/"
-      })
-    }
   return (
     <Card {...props}>
       <CardHeader>
@@ -177,7 +177,7 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
             }}
             />
             <Button onClick={()=>handleGoogleLogin()} variant="outline" type="button">
-                  Login with Google
+                  Register with Google
                 </Button>
           </FieldGroup>
         </form>
