@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Field, FieldLabel, FieldError } from "@/components/ui/field"
 import * as z from "zod"
 import { env } from "@/env"
+import { toast } from "sonner"
 
 const sellerSchema = z.object({
   role: z.literal("SELLER"),
@@ -29,7 +30,8 @@ const sellerSchema = z.object({
   ),
 })
 
-const API_URL=env.API_URL;
+const API_URL=env.NEXT_PUBLIC_API_URL;
+console.log(`${API_URL}/user/completeProfile`);
 
 export function SellerProfileForm() {
   const form = useForm({
@@ -46,14 +48,26 @@ export function SellerProfileForm() {
       onSubmit: sellerSchema,
     },
     onSubmit: async ({ value }) => {
-      const res = await fetch(`${API_URL}/completeProfile`, {
+        const toastId=toast.loading("Creating seller profile");
+        try {
+          const payload = {
+      ...value,
+      dateOfBirth: value.dateOfBirth
+        ? new Date(value.dateOfBirth).toISOString()
+        : null,
+    };
+        const res = await fetch(`${API_URL}/user/completeProfile`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(value), // ✅ userId পাঠানোর দরকার নেই
-      })
-      const data = await res.json()
-      console.log("Seller profile created:", data)
-      window.location.href = "/" // ✅ reload করে নতুন session reflect করবে
+        body: JSON.stringify(payload),
+        credentials:"include"
+        })
+        const data = await res.json();
+        toast.success("Seller profile created",{id:toastId})
+        window.location.href = "/seller";
+        } catch (error) {
+            toast.error("Something went wrong, please try again.",{id:toastId});
+        }
     },
   })
 
@@ -76,6 +90,7 @@ export function SellerProfileForm() {
               id={field.name}
               value={field.state.value}
               onChange={(e) => field.handleChange(e.target.value)}
+              className="border-black"
             />
             {field.state.meta.errors && (
               <FieldError errors={field.state.meta.errors} />
@@ -95,6 +110,7 @@ export function SellerProfileForm() {
               id={field.name}
               value={field.state.value}
               onChange={(e) => field.handleChange(e.target.value)}
+              className="border-black"
             />
             {field.state.meta.errors && (
               <FieldError errors={field.state.meta.errors} />
@@ -114,6 +130,7 @@ export function SellerProfileForm() {
               id={field.name}
               value={field.state.value}
               onChange={(e) => field.handleChange(e.target.value)}
+              className="border-black"
             />
             {field.state.meta.errors && (
               <FieldError errors={field.state.meta.errors} />
@@ -133,6 +150,7 @@ export function SellerProfileForm() {
               id={field.name}
               value={field.state.value}
               onChange={(e) => field.handleChange(e.target.value)}
+              className="border-black"
             />
             {field.state.meta.errors && (
               <FieldError errors={field.state.meta.errors} />
@@ -175,6 +193,7 @@ export function SellerProfileForm() {
               id={field.name}
               value={field.state.value}
               onChange={(e) => field.handleChange(e.target.value)}
+              className="border-black"
             />
             {field.state.meta.errors && (
               <FieldError errors={field.state.meta.errors} />
@@ -183,7 +202,7 @@ export function SellerProfileForm() {
         )}
       />
 
-      <Button type="submit">Submit Seller Profile</Button>
+      <Button type="submit">Create Seller Profile</Button>
     </form>
   )
 }

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Field, FieldLabel, FieldError } from "@/components/ui/field"
 import * as z from "zod"
 import { env } from "@/env"
+import { toast } from "sonner"
 
 const customerSchema = z.object({
   role: z.literal("CUSTOMER"),
@@ -27,7 +28,7 @@ const customerSchema = z.object({
     ),
 })
 
-const API_URL=env.API_URL;
+const API_URL=env.NEXT_PUBLIC_API_URL;
 
 export function CustomerProfileForm() {
   const form = useForm({
@@ -42,15 +43,27 @@ export function CustomerProfileForm() {
       onSubmit: customerSchema,
     },
     onSubmit: async ({ value }) => {
-      const res = await fetch(`${API_URL}/completeProfile`, {
+      const toastId=toast.loading("Creating seller profile");
+        try {
+          const payload = {
+      ...value,
+      dateOfBirth: value.dateOfBirth
+        ? new Date(value.dateOfBirth).toISOString()
+        : null,
+    };
+        const res = await fetch(`${API_URL}/user/completeProfile`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(value),
+        credentials:"include"
       })
-      const data = await res.json()
-      console.log("Profile created:", data)
-      window.location.href = "/";
-    },
+      const data = await res.json();
+        toast.success("Seller profile created",{id:toastId})
+        window.location.href = "/";
+      } catch (error) {
+        toast.error("Something went wrong, please try again.",{id:toastId});
+      }
+    }
   })
 
   return (
@@ -61,28 +74,6 @@ export function CustomerProfileForm() {
       }}
       className="flex flex-col gap-4"
     >
-      {/* Role Selection */}
-      <form.Field
-        name="role"
-        children={(field) => (
-          <Field>
-            <FieldLabel htmlFor={field.name}>Role</FieldLabel>
-            <select
-              id={field.name}
-              value={field.state.value}
-              onChange={(e) => field.handleChange(e.target.value)}
-              className="border rounded p-2"
-            >
-              <option value="CUSTOMER">Customer</option>
-              <option value="SELLER">Seller</option>
-            </select>
-            {field.state.meta.errors && (
-              <FieldError errors={field.state.meta.errors} />
-            )}
-          </Field>
-        )}
-      />
-
       {/* Phone Number */}
       <form.Field
         name="phoneNumber"
@@ -94,6 +85,7 @@ export function CustomerProfileForm() {
               id={field.name}
               value={field.state.value}
               onChange={(e) => field.handleChange(e.target.value)}
+              className="border-black"
             />
             {field.state.meta.errors && (
               <FieldError errors={field.state.meta.errors} />
@@ -113,6 +105,7 @@ export function CustomerProfileForm() {
               id={field.name}
               value={field.state.value}
               onChange={(e) => field.handleChange(e.target.value)}
+              className="border-black"
             />
             {field.state.meta.errors && (
               <FieldError errors={field.state.meta.errors} />
@@ -155,6 +148,7 @@ export function CustomerProfileForm() {
               id={field.name}
               value={field.state.value}
               onChange={(e) => field.handleChange(e.target.value)}
+              className="border-black"
             />
             {field.state.meta.errors && (
               <FieldError errors={field.state.meta.errors} />
@@ -163,7 +157,7 @@ export function CustomerProfileForm() {
         )}
       />
 
-      <Button type="submit">Submit Profile</Button>
+      <Button type="submit">Create Customer Profile</Button>
     </form>
   )
 }

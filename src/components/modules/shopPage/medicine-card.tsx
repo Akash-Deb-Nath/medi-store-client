@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Medicine } from "@/types"
 
+interface MedicineCardProps {
+  medicine: Medicine;
+}
 
-export default function MedicineCard(medicine : Medicine) {
+export default function MedicineCard({medicine} : MedicineCardProps) {
   const {
     name,
     manufacturer,
@@ -19,10 +22,9 @@ export default function MedicineCard(medicine : Medicine) {
   return (
     <Card className="group overflow-hidden rounded-2xl transition hover:-translate-y-1 hover:shadow-xl">
       
-      {/* IMAGE */}
       <div className="relative h-48 w-full bg-slate-100">
         <Image
-          src={imageUrl || "/placeholder-medicine.png"}
+          src={imageUrl as string}
           alt={name}
           fill
           className="object-contain p-4 transition group-hover:scale-105"
@@ -37,7 +39,6 @@ export default function MedicineCard(medicine : Medicine) {
         </Badge>
       </div>
 
-      {/* CONTENT */}
       <CardContent className="space-y-2 p-4">
         <p className="text-xs text-slate-500">
           {manufacturer}
@@ -48,7 +49,7 @@ export default function MedicineCard(medicine : Medicine) {
         </h3>
 
         <p className="text-lg font-bold text-blue-600">
-          ৳ {price}
+          Tk {price}
         </p>
 
         <p className="text-xs text-slate-500">
@@ -56,7 +57,6 @@ export default function MedicineCard(medicine : Medicine) {
         </p>
       </CardContent>
 
-      {/* FOOTER */}
       <CardFooter className="p-4 pt-0">
         <Button
           className="w-full"
