@@ -1,7 +1,7 @@
 import { cartService } from "@/services/cart.service";
 
 const CartPage = async() => {
-    const {data}=await cartService.getCarts();
+    const {data}=await cartService.getCart();
     console.log(data);
     return (
         <div>

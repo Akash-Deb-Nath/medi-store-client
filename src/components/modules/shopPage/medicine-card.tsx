@@ -8,6 +8,7 @@ import { Medicine } from "@/types"
 import { toast } from "sonner"
 import { env } from "@/env"
 import Link from "next/link"
+import { cartService } from "@/services/cart.service"
 
 interface MedicineCardProps {
   medicine: Medicine;
@@ -26,26 +27,22 @@ export default function MedicineCard({medicine} : MedicineCardProps) {
 
   const API_URL=env.NEXT_PUBLIC_API_URL;
 
-  const handleAddToCart = async () => {
-  try {
-    const res = await fetch(`${API_URL}/cart/addToCart`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ medicineId: medicine.id, quantity: 1 }),
-      credentials: "include",
-    });
-
-    if (!res.ok) throw new Error("Failed to add to cart");
-
-    toast.success(`${medicine.name} added to cart`);
-  } catch (error) {
-    toast.error("Something went wrong");
+  const handleAddToCart=async()=>{
+              const toastId=toast.loading("Adding to cart");
+        try {
+        const { data, error } = await cartService.addToCart(medicine.id);
+        if (error) {
+          toast.error(error.message,{id:toastId});
+          return;
+        }
+        toast.success("Medicine added to cart Successfully",{id:toastId});
+        } catch (error) {
+                  toast.error("Something went wrong, please try again.",{id:toastId});
+        }
   }
-};
 
   return (
-    <Link href={`/shop/${medicine.id}`}>
-    <Card className="group w-50 overflow-hidden rounded-2xl transition hover:-translate-y-1 hover:shadow-xl">
+    <Card className="group w-60 overflow-hidden rounded-2xl transition hover:-translate-y-1 hover:shadow-xl">
       
       <div className="relative h-48 w-full bg-slate-100">
         <Image
@@ -83,16 +80,19 @@ export default function MedicineCard({medicine} : MedicineCardProps) {
         </div>
       </CardContent>
 
-      <CardFooter className="p-4 pt-0">
+      <CardFooter className="p-4 pt-0 flex gap-3">
         <Button
-          className="w-full"
           disabled={!inStock}
           onClick={()=>handleAddToCart()}
         >
           Add to Cart
         </Button>
+        <Link href={`/shop/${medicine.id}`}>
+        <Button>
+          Details
+        </Button>
+        </Link>
       </CardFooter>
     </Card>
-    </Link>
   )
 }
