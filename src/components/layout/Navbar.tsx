@@ -47,7 +47,6 @@ interface NavbarProps {
 // Role-based menus
 const defaultMenu: MenuItem[] = [
   { title: "Home", url: "/" },
-  { title: "About", url: "/about" },
   { title: "Shop", url: "/shop" },
   { title: "Cart", url: "/cart" },
   { title: "Orders", url: "/orders" },
