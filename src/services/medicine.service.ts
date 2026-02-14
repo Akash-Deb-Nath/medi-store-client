@@ -12,4 +12,24 @@ export const medicineService = {
       return { data: null, error: { message: "Something went wrong" } };
     }
   },
+  getMedicinesBySeller: async function () {
+    try {
+      const res = await fetch(`${API_URL}/medicines/seller`);
+      const data = await res.json();
+      console.log({ data });
+      return { data: data, error: null };
+    } catch (error) {
+      return { data: null, error: { message: "Something went wrong" } };
+    }
+  },
+  getMedicinesById: async function (medicineId: string) {
+    try {
+      const res = await fetch(`${API_URL}/medicines/${medicineId}`);
+      const data = await res.json();
+      console.log({ data });
+      return { data: data, error: null };
+    } catch (error) {
+      return { data: null, error: { message: "Something went wrong" } };
+    }
+  },
 };

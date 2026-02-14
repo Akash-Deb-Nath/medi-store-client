@@ -13,13 +13,15 @@ interface MedicineCardProps {
   medicine: Medicine;
 }
 
-export default function MedicineCard({medicine} : MedicineCardProps) {
+export default function MedicineDetailsCardCustomer({medicine} : MedicineCardProps) {
   const {
     name,
     manufacturer,
     price,
     stockQuantity,
     imageUrl,
+    sellerId,
+    categoryId
   } = medicine
 
   const inStock = stockQuantity > 0;
@@ -76,6 +78,9 @@ export default function MedicineCard({medicine} : MedicineCardProps) {
         </p>
         </div>
         <div className="flex flex-col gap-5">
+          <p className="text-xs text-slate-500">
+          Manufacturer: {manufacturer}
+        </p>
 
         <p className="text-xs text-slate-500">
           Stock: {stockQuantity}

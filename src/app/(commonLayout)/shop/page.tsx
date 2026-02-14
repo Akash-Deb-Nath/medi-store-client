@@ -6,8 +6,7 @@ const ShopPage = async() => {
     const {data}=await medicineService.getMedicines();
     console.log(data);
     return (
-        <div>
-            <h1>This is shop</h1>
+        <div className="flex flex-wrap gap-5">
             {
                 data?.map((medicine:Medicine) => {
                 return <MedicineCard key={medicine.id} medicine={medicine} />
