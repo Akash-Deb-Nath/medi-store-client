@@ -4,7 +4,6 @@ import { Medicine } from "@/types";
 
 const ShopPage = async() => {
     const {data}=await medicineService.getMedicines();
-    console.log(data);
     return (
         <div className="flex flex-wrap gap-5">
             {

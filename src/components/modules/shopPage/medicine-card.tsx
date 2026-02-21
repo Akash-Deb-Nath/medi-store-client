@@ -8,7 +8,7 @@ import { Medicine } from "@/types"
 import { toast } from "sonner"
 import { env } from "@/env"
 import Link from "next/link"
-import { cartService } from "@/services/cart.service"
+import { addToCart } from "@/actions/cart.action"
 
 interface MedicineCardProps {
   medicine: Medicine;
@@ -28,16 +28,16 @@ export default function MedicineCard({medicine} : MedicineCardProps) {
   const API_URL=env.NEXT_PUBLIC_API_URL;
 
   const handleAddToCart=async()=>{
-              const toastId=toast.loading("Adding to cart");
+         const toastId=toast.loading("Adding to cart");
         try {
-        const { data, error } = await cartService.addToCart(medicine.id);
+        const { data, error } = await addToCart(medicine.id);
         if (error) {
-          toast.error(error.message,{id:toastId});
+          toast.error("Failed to add cart",{id:toastId});
           return;
         }
         toast.success("Medicine added to cart Successfully",{id:toastId});
         } catch (error) {
-                  toast.error("Something went wrong, please try again.",{id:toastId});
+        toast.error("Something went wrong, please try again.",{id:toastId});
         }
   }
 

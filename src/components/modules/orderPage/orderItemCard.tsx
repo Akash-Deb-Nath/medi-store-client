@@ -4,23 +4,23 @@ import Image from "next/image"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Categories} from "@/types"
+import { Categories, OrderItem} from "@/types"
 import { toast } from "sonner"
 import { env } from "@/env"
 import Link from "next/link"
 import { Cart, CartItem } from "@/types/cart.type"
 
-interface CartItemCardProps {
-  cartItem: CartItem;
+interface OrderItemCardProps {
+  orderItem:OrderItem;
 }
 
-export default function CartItemCard({cartItem} : CartItemCardProps) {
+export default function OrderItemCard({orderItem} : OrderItemCardProps) {
   const {
     id,
     quantity,
     price,
     medicine
-  } = cartItem;
+  } = orderItem;
 
   const API_URL=env.NEXT_PUBLIC_API_URL;
 

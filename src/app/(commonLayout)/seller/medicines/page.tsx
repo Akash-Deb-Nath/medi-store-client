@@ -1,4 +1,5 @@
 import MedicineCard from '@/components/modules/shopPage/medicine-card';
+import { Button } from '@/components/ui/button';
 import { medicineService } from '@/services/medicine.service';
 import { Medicine } from '@/types';
 
@@ -7,7 +8,7 @@ const SellerMedicinePage = async() => {
     console.log(data);
     return (
         <div>
-            <h1>This is seller medicine Page</h1>
+            <Button>Add Medicine</Button>
             <div className="flex flex-wrap gap-5">
             {
                 data?.map((medicine:Medicine) => {

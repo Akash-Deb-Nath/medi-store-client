@@ -43,7 +43,7 @@ export function CustomerProfileForm() {
       onSubmit: customerSchema,
     },
     onSubmit: async ({ value }) => {
-      const toastId=toast.loading("Creating seller profile");
+      const toastId=toast.loading("Creating customer profile");
         try {
           const payload = {
       ...value,
@@ -54,12 +54,12 @@ export function CustomerProfileForm() {
         const res = await fetch(`${API_URL}/user/completeProfile`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(value),
+        body: JSON.stringify(payload),
         credentials:"include"
       })
       const data = await res.json();
-        toast.success("Seller profile created",{id:toastId})
-        window.location.href = "/";
+        toast.success("Customer profile created",{id:toastId})
+        window.location.href = "/shop";
       } catch (error) {
         toast.error("Something went wrong, please try again.",{id:toastId});
       }

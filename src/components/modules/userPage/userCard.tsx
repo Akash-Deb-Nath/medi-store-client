@@ -2,7 +2,6 @@
 
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { toast } from "sonner"
 import { env } from "@/env"
 import { User } from "@/types/user.type"
 import Image from "next/image"

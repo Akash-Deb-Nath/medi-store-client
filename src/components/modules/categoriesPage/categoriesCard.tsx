@@ -26,7 +26,7 @@ export default function CategoriesCard({category} : CategoriesCardProps) {
     const res = await fetch(`${API_URL}/cart/addToCart`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ medicineId: medicine.id, quantity: 1 }),
+      body: JSON.stringify({ medicineId: medicin.id, quantity: 1 }),
       credentials: "include",
     });
 

@@ -14,7 +14,13 @@ export const medicineService = {
   },
   getMedicinesBySeller: async function () {
     try {
-      const res = await fetch(`${API_URL}/medicines/seller`);
+      const res = await fetch(`${API_URL}/medicines/seller`, {
+        method: "GET",
+        headers: {
+          Cookie: cookieStore.toString(),
+        },
+        cache: "no-store",
+      });
       const data = await res.json();
       console.log({ data });
       return { data: data, error: null };
