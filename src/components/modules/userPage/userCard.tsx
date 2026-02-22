@@ -40,12 +40,15 @@ export default function UserCard({user} : UserCardProps) {
 
   return (
     <Card className="group w-50 overflow-hidden rounded-2xl transition hover:-translate-y-1 hover:shadow-xl">
-      {/* <Image
-                src={image as string}
-                alt={name}
-                fill
-                className="object-contain p-4 transition group-hover:scale-105"
-              /> */}
+      <div className="relative w-30 h-30">
+  <Image
+    src={image || "/ProfilePicture.png"}
+    alt={name}
+    fill
+    sizes=""
+    className="object-contain p-4 transition group-hover:scale-105"
+  />
+</div>
 
       <CardContent className="space-y-2 p-4">
 

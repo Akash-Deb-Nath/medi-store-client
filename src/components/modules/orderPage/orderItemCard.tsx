@@ -24,23 +24,6 @@ export default function OrderItemCard({orderItem} : OrderItemCardProps) {
 
   const API_URL=env.NEXT_PUBLIC_API_URL;
 
-  const handleEdit = async () => {
-  try {
-    const res = await fetch(`${API_URL}/cart/addToCart`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ medicineId: medicine.id, quantity: 1 }),
-      credentials: "include",
-    });
-
-    if (!res.ok) throw new Error("Failed to add to cart");
-
-    toast.success(` added to cart`);
-  } catch (error) {
-    toast.error("Something went wrong");
-  }
-};
-
   return (
     <Card className="w-70 group overflow-hidden rounded-2xl">
  
@@ -54,26 +37,12 @@ export default function OrderItemCard({orderItem} : OrderItemCardProps) {
               />
             </div>
 
-        <div className="flex justify-around items-center w-full">
-  <div>
+        <div className="flex flex-col w-full gap-3">
     <h1 className="text-lg font-bold text-blue-600">{medicine.name}</h1>
     <p className="text-sm">Price: {price} Tk</p>
     <p className="text-sm">Quantity: {quantity} pcs</p>
-  </div>
-  <div>
-    <Button variant="outline" className="border-0">Remove</Button>
-  </div>
 </div>
       </CardContent>
-
-      {/* <CardFooter className="p-4 pt-0">
-        <Button
-          className="w-full"
-          onClick={()=>handleEdit()}
-        >
-          Edit
-        </Button>
-      </CardFooter> */}
     </Card>
   )
 }

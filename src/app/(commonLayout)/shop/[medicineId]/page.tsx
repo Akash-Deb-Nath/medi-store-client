@@ -1,9 +1,8 @@
 import MedicineDetailsCardCustomer from "@/components/modules/shopPage/medicineDetailsCardSeller";
 import { medicineService } from "@/services/medicine.service";
-import { Medicine } from "@/types";
 
 interface MedicineDetailProps {
-  params: Promise<{ medicineId: string }>; // notice Promise
+  params: Promise<{ medicineId: string }>;
 }
 
 export default async function MedicineDetailPage({ params }: MedicineDetailProps) {

@@ -1,13 +1,12 @@
-import OrderCard from "@/components/modules/orderPage/orderCard";
-import { orderService } from "@/services/orders.service";
-import { Order } from "@/types";
+import OrderCard from '@/components/modules/orderPage/orderCard';
+import { orderService } from '@/services/orders.service';
+import { Order } from '@/types';
 
-const OrdersPage =async() => {
-    const {data}=await orderService.getAllOrders();
-    console.log(data);
+const OrdersPage = async () => {
+    const {data}=await orderService.getOrders();
     return (
         <div className="px-10 flex flex-col gap-5">
-                    <h1 className="text-2xl font-bold">All orders:</h1>
+                    <h1 className="text-2xl font-bold">Orders:</h1>
                     <div>
                         {
                             data.map((order:Order)=>{

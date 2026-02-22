@@ -1,19 +1,18 @@
 "use client"
 
-import Image from "next/image"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import {Order} from "@/types"
-import { toast } from "sonner"
-import { env } from "@/env"
-import { Cart, CartItem } from "@/types/cart.type"
 import Link from "next/link"
+import { useSessionContext } from "@/contexts/SessionContext"
+import { UserRole } from "@/components/layout/Navbar"
 
 interface OrderCardProps {
   order:Order;
 }
 
 export default function OrderCard({order} : OrderCardProps) {
+   const user = useSessionContext();
   const {
     id,
     totalPrice,
@@ -35,11 +34,13 @@ export default function OrderCard({order} : OrderCardProps) {
       </CardContent>
 
       <CardFooter className="p-4 pt-0">
-        <Link href={`/orders/${order.id}`}>
+        {
+          user?.role===UserRole.CUSTOMER && <Link href={`/orders/${order.id}`} className="w-full">
         <Button className="w-full">
           Order Details
         </Button>
         </Link>
+        }
       </CardFooter>
     </Card>
   )

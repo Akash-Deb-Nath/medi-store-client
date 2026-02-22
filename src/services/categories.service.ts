@@ -1,9 +1,11 @@
 import { env } from "@/env";
+import { cookies } from "next/headers";
 
 const API_URL = env.API_URL;
 export const categoriesService = {
-  getCatgeories: async function () {
+  getCategories: async function () {
     try {
+      const cookieStore = await cookies();
       const res = await fetch(`${API_URL}/categories`, {
         method: "GET",
         headers: {
@@ -12,7 +14,6 @@ export const categoriesService = {
         cache: "no-store",
       });
       const data = await res.json();
-      console.log({ data });
       return { data: data, error: null };
     } catch (error) {
       console.log(error);

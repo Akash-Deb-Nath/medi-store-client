@@ -20,6 +20,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Link from "next/link";
+import { useSessionContext } from "@/contexts/SessionContext";
 
 export enum UserRole {
   CUSTOMER = "CUSTOMER",
@@ -85,6 +86,8 @@ const Navbar = ({
   },
   className,
 }: NavbarProps) => {
+  const user = useSessionContext();
+  role = user?.role as UserRole || role;
   const menu = getMenuByRole(role);
 
   return (

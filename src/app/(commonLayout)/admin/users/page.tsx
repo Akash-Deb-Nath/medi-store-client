@@ -6,7 +6,7 @@ const UsersPage = async() => {
     const {data}=await userService.getAllUsers();
     console.log(data);
     return (
-        <div className='flex flex-wrap gap-3 p-3'>
+        <div className='flex flex-wrap gap-3 py-10 px-5'>
             {
                 data?.map((user:User)=><UserCard key={user.id} user={user}></UserCard>)
             }
