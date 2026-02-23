@@ -5,7 +5,7 @@ import { Medicine } from "@/types";
 const ShopPage = async() => {
     const {data}=await medicineService.getMedicines();
     return (
-        <div className="flex flex-wrap gap-5">
+        <div className="flex flex-wrap gap-5 p-10">
             {
                 data?.map((medicine:Medicine) => {
                 return <MedicineCard key={medicine.id} medicine={medicine} />
