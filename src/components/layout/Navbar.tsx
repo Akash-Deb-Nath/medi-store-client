@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/sheet";
 import Link from "next/link";
 import { useSessionContext } from "@/contexts/SessionContext";
+import Image from "next/image";
 
 export enum UserRole {
   CUSTOMER = "CUSTOMER",
@@ -79,7 +80,7 @@ function getMenuByRole(role?: UserRole): MenuItem[] {
 }
 
 const Navbar = ({
-  role = UserRole.CUSTOMER,// 👈 default role
+  role = UserRole.CUSTOMER, // 👈 default role
   auth = {
     login: { title: "Login", url: "/login" },
     register: { title: "Register", url: "/register" },
@@ -92,7 +93,7 @@ const Navbar = ({
 
   return (
     <section className={cn("py-4", className)}>
-      <div className="containe mx-auto px-4">
+      <div className="container mx-auto px-4">
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
           <div className="flex items-center gap-6">
@@ -108,13 +109,34 @@ const Navbar = ({
               </NavigationMenu>
             </div>
           </div>
-          <div className="flex gap-2">
-            <Button asChild variant="outline" size="sm">
-              <Link href={auth.login.url}>{auth.login.title}</Link>
-            </Button>
-            <Button asChild size="sm">
-              <Link href={auth.register.url}>{auth.register.title}</Link>
-            </Button>
+          <div className="flex gap-2 items-center">
+            {user ? (
+              <>
+                {/* User avatar */}
+                {
+                  <Image
+                    src={user.image||"/ProfilePicture.png"}
+                    alt="User Avatar"
+                    width={32}
+                    height={32}
+                    className="rounded-full"
+                  />
+                }
+                {/* Logout */}
+                <Button size="sm">
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button asChild size="sm">
+                  <Link href={auth.login.url}>{auth.login.title}</Link>
+                </Button>
+                <Button asChild size="sm">
+                  <Link href={auth.register.url}>{auth.register.title}</Link>
+                </Button>
+              </>
+            )}
           </div>
         </nav>
 
@@ -145,12 +167,31 @@ const Navbar = ({
                   </Accordion>
 
                   <div className="flex flex-col gap-3">
-                    <Button asChild variant="outline" size="sm">
-                      <Link href={auth.login.url}>{auth.login.title}</Link>
-                    </Button>
-                    <Button asChild size="sm">
-                      <Link href={auth.register.url}>{auth.register.title}</Link>
-                    </Button>
+                    {user ? (
+                      <>
+                        {
+                          <Image
+                    src={user.image||"/ProfilePicture.png"}
+                    alt="User Avatar"
+                    width={32}
+                    height={32}
+                    className="rounded-full"
+                  />
+                  }
+                        <Button size="sm">
+                          Logout
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        <Button asChild size="sm">
+                          <Link href={auth.login.url}>{auth.login.title}</Link>
+                        </Button>
+                        <Button asChild size="sm">
+                          <Link href={auth.register.url}>{auth.register.title}</Link>
+                        </Button>
+                      </>
+                    )}
                   </div>
                 </div>
               </SheetContent>
