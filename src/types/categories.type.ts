@@ -3,3 +3,8 @@ export interface Categories {
   name: string;
   details: string;
 }
+
+export interface CategoriesFormValues {
+  name: string;
+  details: string;
+}

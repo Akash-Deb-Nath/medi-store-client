@@ -26,13 +26,13 @@ export default function CategoriesCard({category} : CategoriesCardProps) {
     const res = await fetch(`${API_URL}/cart/addToCart`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ medicineId: medicin.id, quantity: 1 }),
+      body: JSON.stringify({ categoryIds: category.id, quantity: 1 }),
       credentials: "include",
     });
 
     if (!res.ok) throw new Error("Failed to add to cart");
 
-    toast.success(` added to cart`);
+    toast.success(`${category.name} added to cart`);
   } catch (error) {
     toast.error("Something went wrong");
   }

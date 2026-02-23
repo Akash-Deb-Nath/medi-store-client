@@ -9,9 +9,9 @@ const CategoriesPage = async() => {
     return (
         <div className='flex flex-col justify-center items-center gap-5 p-5'>
             <Link href="/admin/categories/addCategories">
-                <Button className='mb-5'>Add New Medicine</Button>
+                <Button className='mb-5'>Add New Categories</Button>
             </Link>
-            <div className='flex flex-wrap justify-center p-3'>
+            <div className='flex flex-wrap justify-center p-5 gap-5'>
             {
                 data?.map((category:Categories)=><CategoriesCard key={category.id} category={category}></CategoriesCard>)
             }
