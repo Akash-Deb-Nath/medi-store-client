@@ -22,6 +22,8 @@ import {
 import Link from "next/link";
 import { useSessionContext } from "@/contexts/SessionContext";
 import Image from "next/image";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
 
 export enum UserRole {
   CUSTOMER = "CUSTOMER",
@@ -91,6 +93,17 @@ const Navbar = ({
   role = user?.role as UserRole || role;
   const menu = getMenuByRole(role);
 
+  const handleLogout=async()=>{
+    const toastId=toast.loading("Logging out user");
+    try {
+      await authClient.signOut();
+      toast.success("Logged out successfully", { id: toastId });
+      window.location.href = "/";
+    } catch (error) {
+      toast.error("Something went wrong, please try again.", { id: toastId });
+    }
+  }
+
   return (
     <section className={cn("py-4", className)}>
       <div className="container mx-auto px-4">
@@ -112,7 +125,7 @@ const Navbar = ({
           <div className="flex gap-2 items-center">
             {user ? (
               <>
-                {/* User avatar */}
+                <h1 className="text-lg font-semibold">{user.name}</h1>
                 {
                   <Image
                     src={user.image||"/ProfilePicture.png"}
@@ -122,8 +135,7 @@ const Navbar = ({
                     className="rounded-full"
                   />
                 }
-                {/* Logout */}
-                <Button size="sm">
+                <Button size="sm" onClick={()=>handleLogout()}>
                   Logout
                 </Button>
               </>
@@ -169,6 +181,7 @@ const Navbar = ({
                   <div className="flex flex-col gap-3">
                     {user ? (
                       <>
+                      <h1 className="text-lg font-semibold">{user.name}</h1>
                         {
                           <Image
                     src={user.image||"/ProfilePicture.png"}
@@ -178,7 +191,7 @@ const Navbar = ({
                     className="rounded-full"
                   />
                   }
-                        <Button size="sm">
+                        <Button size="sm" onClick={()=>handleLogout()}>
                           Logout
                         </Button>
                       </>
