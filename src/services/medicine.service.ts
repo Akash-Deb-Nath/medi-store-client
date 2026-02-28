@@ -32,11 +32,27 @@ export const medicineService = {
       };
     }
   },
-  getMedicines: async function () {
+  getMedicines: async function ({
+    search,
+    categoryId,
+    price,
+    manufacturer,
+  }: {
+    search?: string;
+    categoryId?: string;
+    price?: number;
+    manufacturer?: string;
+  }) {
     try {
-      const res = await fetch(`${API_URL}/medicines`);
+      const query = new URLSearchParams();
+      if (search) query.append("search", search);
+      if (categoryId) query.append("categoryId", categoryId);
+      if (price) query.append("price", price.toString());
+      if (manufacturer) query.append("manufacturer", manufacturer);
+
+      const res = await fetch(`${API_URL}/medicines?${query.toString()}`);
       const data = await res.json();
-      return { data: data, error: null };
+      return { data, error: null };
     } catch (error) {
       return { data: null, error: { message: "Something went wrong" } };
     }

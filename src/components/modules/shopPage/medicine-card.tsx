@@ -9,6 +9,7 @@ import { toast } from "sonner"
 import { env } from "@/env"
 import Link from "next/link"
 import { addToCart } from "@/actions/cart.action"
+import { Eye, ShoppingCart } from "lucide-react"
 
 interface MedicineCardProps {
   medicine: Medicine;
@@ -33,6 +34,10 @@ export default function MedicineCard({medicine} : MedicineCardProps) {
         const { data, error } = await addToCart(medicine.id);
         if (error) {
           toast.error("Failed to add cart",{id:toastId});
+          return;
+        }
+        if (data?.success === false) {
+          toast.error(data.message,{id:toastId});
           return;
         }
         toast.success("Medicine added to cart Successfully",{id:toastId});
@@ -80,16 +85,17 @@ export default function MedicineCard({medicine} : MedicineCardProps) {
         </div>
       </CardContent>
 
-      <CardFooter className="p-4 pt-0 flex gap-3">
+      <CardFooter className="p-4 pt-0 flex justify-around gap-3">
         <Button
           disabled={!inStock}
           onClick={()=>handleAddToCart()}
         >
+          <ShoppingCart className="h-4 w-4" />
           Add to Cart
         </Button>
         <Link href={`/shop/${medicine.id}`}>
         <Button>
-          Details
+          <Eye className="h-4 w-4" />
         </Button>
         </Link>
       </CardFooter>

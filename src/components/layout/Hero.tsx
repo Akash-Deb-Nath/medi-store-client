@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import Link from "next/link"
+import Features from "./Feature"
+import Stats from "./Stats"
+import CTASection from "./CTASection"
 
 export default function Hero() {
   return (
@@ -61,49 +64,10 @@ export default function Hero() {
         </div>
       </div>
       <div className="w-full px-4 md:px-10">
-      <Card
-        className="
-          mx-auto
-          rounded-3xl
-          border border-blue-200
-          bg-gradient-to-b from-blue-50 to-blue-100
-          p-10 md:p-16
-          text-center
-        "
-      >
-        <div className="mb-6">
-          <Button
-            size="sm"
-            className="rounded-full bg-blue-600 px-6 hover:bg-blue-700"
-          >
-            Get Started Today
-          </Button>
-        </div>
-
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
-          Ready to Order Your Medicines?
-        </h2>
-
-        <p className="mx-auto mt-4 max-w-2xl text-slate-600">
-          Join thousands of satisfied customers and experience hassle-free
-          medicine delivery
-        </p>
-
-        <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Button size="lg" className="px-8">
-            <Link href={"/register"}>Register Now</Link>
-          </Button>
-
-          <Button
-            size="lg"
-            variant="outline"
-            className="px-8 border-slate-300 bg-[#2563EB] text-white"
-          >
-            <Link href={"/shop"}>Browse Medicines</Link>
-          </Button>
-        </div>
-      </Card>
-    </div>
+      <Features />
+      <Stats />
+      <CTASection />
+      </div>
     </section>
   )
 }

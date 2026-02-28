@@ -24,6 +24,11 @@ export const cartService = {
   addToCart: async function (medicineId: string) {
     try {
       const cookieStore = await cookies();
+      const session = cookieStore.get("better-auth.session_token");
+      console.log(session);
+      if (!session) {
+        return { error: "Unauthorized" };
+      }
       const res = await fetch(`${API_URL}/cart/add`, {
         method: "POST",
         headers: {

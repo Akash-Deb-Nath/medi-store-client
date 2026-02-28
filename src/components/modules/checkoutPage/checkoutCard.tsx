@@ -29,7 +29,7 @@ const handleCheckout=async()=>{
           return;
         }
         toast.success("Order placed successfully",{id:toastId});
-        // window.location.href = "/shop";
+        window.location.href = "/orders";
         } catch (error) {
         toast.error("Something went wrong, please try again.",{id:toastId});
         }
