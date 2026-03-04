@@ -1,36 +1,181 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💊 MediStore Frontend
 
-## Getting Started
+"Your Trusted Online Medicine Shop"
 
-First, run the development server:
+Frontend application for **MediStore**, a full-stack OTC medicine e-commerce platform.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+This application provides UI for:
+
+- 🧑 Customers to browse and order medicines
+- 🏪 Sellers to manage inventory and orders
+- 🛡 Admins to manage users and platform data
+
+> ⚠️ OTC Medicines Only (No prescription drugs supported)
+
+---
+
+# 🚀 Project Overview
+
+MediStore is a modern e-commerce web application where users can purchase over-the-counter medicines online. The platform supports role-based access for Customers, Sellers, and Admins.
+
+Users select their role during registration.
+
+> 💡 Admin accounts should be seeded from the backend/database.
+
+---
+
+# 👥 Roles & Permissions
+
+| Role     | Description                  | Key Permissions                                    |
+| -------- | ---------------------------- | -------------------------------------------------- |
+| Customer | Users who purchase medicines | Browse, Cart, Order, Track status, Leave reviews   |
+| Seller   | Medicine vendors/pharmacies  | Manage inventory, View orders, Update order status |
+| Admin    | Platform moderators          | Manage inventory, Users, Orders, Categories        |
+
+---
+
+# 🛠 Tech Stack
+
+> See backend README for complete API specifications.
+
+Typical Frontend Stack (Example):
+
+- ⚛️ React / Next.js
+- 🎨 Tailwind CSS, ShadCn
+- 🔐 Better Auth Authentication
+- 📦 Context API
+- 🌐 Fetch API
+
+---
+
+# ✨ Features
+
+## 🌍 Public Features
+
+- Browse all available medicines
+- Search and filter by category, price, manufacturer
+- View detailed medicine information
+
+---
+
+## 🧑 Customer Features
+
+- Register and login as Customer
+- Add medicines to cart
+- Place orders with shipping address (Cash on Delivery)
+- Track order status
+- Leave reviews after ordering
+- Manage profile
+
+---
+
+## 🏪 Seller Features
+
+- Register and login as Seller
+- Add, edit, and remove medicines
+- Manage stock levels
+- View incoming orders
+- Update order status
+
+---
+
+## 🛡 Admin Features
+
+- View all users (Customers & Sellers)
+- Ban / Unban users
+- View all medicines and orders
+- Manage categories
+
+---
+
+# 🗺 Pages & Routes
+
+---
+
+## 🌍 Public Routes
+
+| Route       | Page             | Description                                  |
+| ----------- | ---------------- | -------------------------------------------- |
+| `/`         | Home             | Hero section, categories, featured medicines |
+| `/shop`     | Shop             | All medicines with filters                   |
+| `/shop/:id` | Medicine Details | Medicine info & add to cart                  |
+| `/login`    | Login            | Login form                                   |
+| `/register` | Register         | Registration form                            |
+
+---
+
+## 🧑 Customer Routes (Private)
+
+| Route         | Page          | Description                      |
+| ------------- | ------------- | -------------------------------- |
+| `/cart`       | Cart          | View cart items                  |
+| `/checkout`   | Checkout      | Shipping address & confirm order |
+| `/orders`     | My Orders     | Order history                    |
+| `/orders/:id` | Order Details | Items & status tracking          |
+| `/profile`    | Profile       | Edit personal information        |
+
+---
+
+## 🏪 Seller Routes (Private)
+
+| Route               | Page           | Description         |
+| ------------------- | -------------- | ------------------- |
+| `/seller`           | Seller Profile | Seller Profile |
+| `/seller/medicines` | Inventory      | Manage medicines    |
+| `/seller/orders`    | Orders         | Update order status |
+
+---
+
+## 🛡 Admin Routes (Private)
+
+| Route               | Page       | Description                |
+| ------------------- | ---------- | -------------------------- |
+| `/admin`            | Profile    | Admin Profile              |
+| `/admin/users`      | Users      | Manage users               |
+| `/admin/orders`     | Orders     | View all orders            |
+| `/admin/categories` | Categories | Manage medicine categories |
+
+---
+
+# 🔐 Authentication Flow
+
+```text
+User Registers (Select Role)
+        ↓
+Login
+        ↓
+Session Stored
+        ↓
+Protected Routes Accessible Based on Role
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# 🧩 Application Structure (Example)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```text
+src/
+ ├── components/
+ ├── app/
+ ├── layouts/
+ ├── context/
+ ├── services/ (API calls)
+ ├── hooks/
+ └── utils/
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+# 📦 Future Improvements
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 💳 Online Payment Integration
+- 📊 Seller Analytics Dashboard
+- 🔔 Real-time Notifications
+- ⭐ Advanced Review System
+- 🌙 Dark Mode UI
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+# 📄 License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is intended for educational and commercial OTC pharmacy platform usage.

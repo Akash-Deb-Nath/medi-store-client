@@ -1,7 +1,7 @@
 import UserCard from '@/components/modules/userPage/userCard';
 import { userService } from '@/services/user.service';
 
-const AdminDashboardPage = async () => {
+const SellerPage = async () => {
     const {data}=await userService.getSession();
         return (
             <div className="p-10">
@@ -10,4 +10,4 @@ const AdminDashboardPage = async () => {
         );
 };
 
-export default AdminDashboardPage;
+export default SellerPage;
