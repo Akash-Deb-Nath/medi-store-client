@@ -4,7 +4,12 @@ import { env } from "./src/env";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["plus.unsplash.com", "images.unsplash.com","new.com"],
+    domains: [
+      "plus.unsplash.com",
+      "images.unsplash.com",
+      "new.com",
+      "i.ibb.co.com",
+    ],
   },
   async rewrites() {
     return [
