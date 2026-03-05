@@ -16,10 +16,8 @@ export const orderService = {
         cache: "no-store",
       });
       const data = await res.json();
-      console.log({ data });
       return { data: data, error: null };
     } catch (error) {
-      console.log(error);
       return { data: null, error: { message: "Something went wrong" } };
     }
   },
@@ -34,10 +32,8 @@ export const orderService = {
         cache: "no-store",
       });
       const data = await res.json();
-      console.log({ data });
       return { data: data, error: null };
     } catch (error) {
-      console.log(error);
       return { data: null, error: { message: "Something went wrong" } };
     }
   },
@@ -52,10 +48,8 @@ export const orderService = {
         cache: "no-store",
       });
       const data = await res.json();
-      console.log({ data });
       return { data: data, error: null };
     } catch (error) {
-      console.log(error);
       return { data: null, error: { message: "Something went wrong" } };
     }
   },

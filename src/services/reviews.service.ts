@@ -18,7 +18,6 @@ export const reviewsService = {
         body: JSON.stringify(value),
       });
       const data = await res.json();
-      console.log(data);
       if (!data) {
         return {
           data: null,

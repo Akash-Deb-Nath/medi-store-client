@@ -86,14 +86,12 @@ export default function MedicineDetailsCardCustomer({ medicine }: MedicineCardPr
     onSubmit:
       async ({ value }) => {
         const toastId = toast.loading("Adding review...");
-        console.log(value);
         try {
           const { data, error } = await addReviews(medicine.id, value);
           if (error || data?.success === false) {
             toast.error(data?.message || "Failed to add review", { id: toastId });
             return;
           }
-          console.log(data);
           if (data) {
             setReviews(prev => [...prev, data]);
           }

@@ -1,13 +1,17 @@
+import { getSession } from "@/actions/user.action";
 import OrderCard from "@/components/modules/orderPage/orderCard";
 import { Button } from "@/components/ui/button";
 import { orderService } from "@/services/orders.service";
 import { Order } from "@/types";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 const OrdersPage = async () => {
+    const user=await getSession();
+        if (user.data===null) {
+            redirect("/login");
+        }
     const { data } = await orderService.getOrders();
-    console.log(data);
-    console.log(data?.length);
     return (
         <div className="px-10 flex flex-col gap-5">
             {

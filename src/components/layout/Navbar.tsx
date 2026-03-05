@@ -58,13 +58,13 @@ const defaultMenu: MenuItem[] = [
 ];
 
 const sellerMenu: MenuItem[] = [
-  { title: "Dashboard", url: "/seller/dashboard" },
+  { title: "SellerProfile", url: "/seller" },
   { title: "Inventory", url: "/seller/medicines" },
   { title: "Orders", url: "/seller/orders" },
 ];
 
 const adminMenu: MenuItem[] = [
-  { title: "Dashboard", url: "/admin" },
+  { title: "AdminProfile", url: "/admin" },
   { title: "Users", url: "/admin/users" },
   { title: "Orders", url: "/admin/orders" },
   { title: "Categories", url: "/admin/categories" },

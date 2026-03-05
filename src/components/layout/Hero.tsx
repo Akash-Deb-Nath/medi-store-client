@@ -55,6 +55,7 @@ export default function Hero() {
             <Image
               src="/medicines.jpg"
               alt="Medicines"
+              priority
               width={600}
               height={400}
               className="object-cover"

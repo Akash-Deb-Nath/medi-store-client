@@ -1,3 +1,4 @@
+import { Roles } from "./../constants/roles";
 export interface User {
   id: string;
   name: string;
@@ -6,6 +7,13 @@ export interface User {
   image?: string | null;
   createdAt: string;
   updatedAt: string;
-  role?: string;
+  role?: (typeof Roles)[keyof typeof Roles];
+  status?: string;
+}
+
+import type { User as BetterAuthUser } from "better-auth";
+
+export interface CustomUser extends BetterAuthUser {
+  role?: "CUSTOMER" | "ADMIN" | "SELLER";
   status?: string;
 }

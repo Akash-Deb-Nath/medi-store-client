@@ -15,7 +15,6 @@ export const cartService = {
         cache: "no-store",
       });
       const data = await res.json();
-      console.log(data);
       return { data: data, error: null };
     } catch (error) {
       return { data: null, error: { message: "Something went wrong" } };
@@ -25,7 +24,6 @@ export const cartService = {
     try {
       const cookieStore = await cookies();
       const session = cookieStore.get("better-auth.session_token");
-      console.log(session);
       if (!session) {
         return { error: "Unauthorized" };
       }

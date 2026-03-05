@@ -4,7 +4,6 @@ import { User } from '@/types/user.type';
 
 const UsersPage = async() => {
     const {data}=await userService.getAllUsers();
-    console.log(data);
     return (
         <div className='flex flex-wrap gap-3 py-10 px-5'>
             {

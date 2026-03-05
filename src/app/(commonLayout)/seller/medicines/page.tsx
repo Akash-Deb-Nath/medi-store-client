@@ -6,7 +6,6 @@ import Link from 'next/link';
 
 const SellerMedicinePage = async() => {
     const {data}=await medicineService.getMedicinesBySeller();
-    console.log(data);
     return (
         <div className='flex flex-col justify-center items-center gap-5 p-5'>
             <Link href="/seller/medicines/addMedicines">

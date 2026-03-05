@@ -4,7 +4,7 @@ import { userService } from '@/services/user.service';
 const AdminDashboardPage = async () => {
     const {data}=await userService.getSession();
         return (
-            <div className="p-10">
+            <div className="flex justify-center items-center p-10">
                 <UserCard user={data.user} />
             </div>
         );

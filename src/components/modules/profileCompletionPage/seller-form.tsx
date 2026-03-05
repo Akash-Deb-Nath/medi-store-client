@@ -31,7 +31,6 @@ const sellerSchema = z.object({
 })
 
 const API_URL=env.NEXT_PUBLIC_API_URL;
-console.log(`${API_URL}/user/completeProfile`);
 
 export function SellerProfileForm() {
   const form = useForm({

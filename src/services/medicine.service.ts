@@ -59,7 +59,6 @@ export const medicineService = {
   },
   getMedicinesBySeller: async function () {
     try {
-      console.log(`${API_URL}/medicines/seller`);
       const cookieStore = await cookies();
       const res = await fetch(`${API_URL}/medicines/seller`, {
         method: "GET",
@@ -70,7 +69,6 @@ export const medicineService = {
         cache: "no-store",
       });
       const data = await res.json();
-      console.log("data", { data });
       return { data: data, error: null };
     } catch (error) {
       return { data: null, error: { message: "Something went wrong" } };
@@ -80,7 +78,6 @@ export const medicineService = {
     try {
       const res = await fetch(`${API_URL}/medicines/${medicineId}`);
       const data = await res.json();
-      console.log({ data });
       return { data: data, error: null };
     } catch (error) {
       return { data: null, error: { message: "Something went wrong" } };

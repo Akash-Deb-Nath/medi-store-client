@@ -1,12 +1,21 @@
+import { getSession } from "@/actions/user.action";
 import CartItemCard from "@/components/modules/cartPage/cartCard";
 import { Button } from "@/components/ui/button";
+import { useSessionContext } from "@/contexts/SessionContext";
 import { cartService } from "@/services/cart.service";
 import { CartItem } from "@/types/cart.type";
+import { get } from "http";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 const CartPage = async() => {
     const {data}=await cartService.getCart();
-    const {totalPrice,items}=data;
+    const totalPrice = data?.totalPrice ?? 0;
+    const items = data?.items ?? [];
+    const user=await getSession();
+    if (user.data===null) {
+        redirect("/login");
+    }
     return (
         <div className="flex flex-col gap-10 px-5 mt-5">
             {

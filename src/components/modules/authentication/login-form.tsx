@@ -19,15 +19,33 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
-import { authClient } from "@/lib/auth-client"
 import * as z from "zod"
 import { useForm } from "@tanstack/react-form"
 import { toast } from "sonner"
+import { authClient } from "@/lib/auth-client"
+import { useSessionContext } from "@/contexts/SessionContext"
+import { UserRole } from '@/components/layout/Navbar';
 
 const formSchema=z.object({
   email:z.email("Invalid email address"),
   password: z.string().min(8, "Password must be at least 8 characters"),
 })
+
+function redirectByRole(role:UserRole) {
+  switch (role) {
+    case "CUSTOMER":
+      window.location.href = "/shop";
+      break;
+    case "ADMIN":
+      window.location.href = "/admin";
+      break;
+    case "SELLER":
+      window.location.href = "/seller";
+      break;
+    default:
+      window.location.href = "/";
+  }
+}
 
 export function LoginForm({
   className,
@@ -52,12 +70,15 @@ export function LoginForm({
     const toastId=toast.loading("Logging in user");
       try {
         const {data,error}=await authClient.signIn.email(value);
+        const role=(data?.user as any)?.role;
         if (error) {
           toast.error(error.message,{id:toastId});
           return;
         }
         toast.success("User Logged in Successfully",{id:toastId});
-        window.location.href = "/";
+
+        redirectByRole(role);
+        
       } catch (error) {
         toast.error("Something went wrong, please try again.",{id:toastId});
       }

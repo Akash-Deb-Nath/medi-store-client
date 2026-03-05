@@ -57,7 +57,6 @@ const [categories, setCategories] = useState<{ id: string; name: string }[]>([])
             imageUrl: value.imageUrl,
             categoryId: value.categoryId,
           };
-          console.log(payload);
 
         const toastId=toast.loading("Creating medicine");
         try {

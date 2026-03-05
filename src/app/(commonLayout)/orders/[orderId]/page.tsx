@@ -9,7 +9,6 @@ interface OrderItemPageProps {
 const OrderItemPage = async ({ params }:OrderItemPageProps) => {
       const { orderId } = await params;
     const {data}=await orderService.getOrderById(orderId);
-    console.log(data);
     return (
         <div className='flex flex-col gap-3'>
             <div className='px-16 flex flex-col gap-3'>

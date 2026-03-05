@@ -5,7 +5,6 @@ import { CategoriesFormValues } from "@/types";
 
 export const getCategories = async () => {
   const result = await categoriesService.getCategories();
-  console.log(result.data);
 
   if (result.error) {
     return [];
