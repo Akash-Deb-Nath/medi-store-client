@@ -7,6 +7,8 @@ import { Field, FieldLabel, FieldError } from "@/components/ui/field"
 import * as z from "zod"
 import { env } from "@/env"
 import { toast } from "sonner"
+import { authClient } from "@/lib/auth-client"
+import { createSeller } from "@/actions/user.action"
 
 const sellerSchema = z.object({
   role: z.literal("SELLER"),
@@ -55,15 +57,15 @@ export function SellerProfileForm() {
         ? new Date(value.dateOfBirth).toISOString()
         : null,
     };
-        const res = await fetch(`${API_URL}/user/completeProfile`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-        credentials:"include"
-        })
-        const data = await res.json();
-        toast.success("Seller profile created",{id:toastId})
-        window.location.href = "/seller";
+        const data=await createSeller(payload);
+        console.log("seller",data);
+        if (data.data!==null) {
+          toast.success("Seller profile created",{id:toastId})
+          await authClient.signOut();
+          window.location.href = "/login";
+        }else{
+          toast.error("Seller profile creation failed", { id: toastId });
+        }
         } catch (error) {
             toast.error("Something went wrong, please try again.",{id:toastId});
         }

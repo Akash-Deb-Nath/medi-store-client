@@ -11,6 +11,7 @@ const OrdersPage = async () => {
         if (user.data===null) {
             redirect("/login");
         }
+        console.log(user);
     const { data } = await orderService.getOrders();
     return (
         <div className="px-10 flex flex-col gap-5">

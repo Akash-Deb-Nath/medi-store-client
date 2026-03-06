@@ -1,5 +1,4 @@
 import { CategoryForm } from '@/components/modules/categoriesPage/category-form';
-import React from 'react';
 
 const AddCategoriesPage = () => {
     return (

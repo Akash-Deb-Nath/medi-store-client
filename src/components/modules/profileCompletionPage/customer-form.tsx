@@ -7,6 +7,8 @@ import { Field, FieldLabel, FieldError } from "@/components/ui/field"
 import * as z from "zod"
 import { env } from "@/env"
 import { toast } from "sonner"
+import { authClient } from "@/lib/auth-client"
+import { createCustomer } from "@/actions/user.action"
 
 const customerSchema = z.object({
   role: z.literal("CUSTOMER"),
@@ -51,15 +53,15 @@ export function CustomerProfileForm() {
         ? new Date(value.dateOfBirth).toISOString()
         : null,
     };
-        const res = await fetch(`${API_URL}/user/completeProfile`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-        credentials:"include"
-      })
-      const data = await res.json();
-        toast.success("Customer profile created",{id:toastId})
-        window.location.href = "/shop";
+        const data=await createCustomer(payload);
+        console.log("customer",data);
+        if (data.data!==null) {
+          toast.success("Customer profile created",{id:toastId});
+                  await authClient.signOut();
+                  window.location.href = "/login";
+                }else{
+toast.error("Customer profile creation failed", { id: toastId });
+                }
       } catch (error) {
         toast.error("Something went wrong, please try again.",{id:toastId});
       }

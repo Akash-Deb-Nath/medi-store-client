@@ -17,3 +17,21 @@ export interface CustomUser extends BetterAuthUser {
   role?: "CUSTOMER" | "ADMIN" | "SELLER";
   status?: string;
 }
+
+export type CustomerProfile = {
+  role: string;
+  phoneNumber: string;
+  dateOfBirth: string | null;
+  gender: string;
+  address: string;
+};
+
+export type SellerProfile = {
+  pharmacyName: string;
+  licenseNumber: string;
+  role: string;
+  phoneNumber: string;
+  dateOfBirth: string | null;
+  gender: string;
+  address: string;
+};

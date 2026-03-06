@@ -79,4 +79,36 @@ export const cartService = {
       };
     }
   },
+  removeCartItem: async function (itemId: string) {
+    try {
+      const cookieStore = await cookies();
+      const session = cookieStore.get("better-auth.session_token");
+      if (!session) {
+        return { error: "Unauthorized" };
+      }
+      const res = await fetch(`${API_URL}/cart/items/${itemId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: cookieStore.toString(),
+        },
+        credentials: "include",
+      });
+
+      const data = await res.json();
+      if (!data) {
+        return {
+          data: null,
+          error: "Something went wrong",
+        };
+      }
+      return { data, error: null };
+    } catch (error: any) {
+      console.error("Remove cart item error:", error);
+      return {
+        data: null,
+        error: { message: error.message || "Something went wrong" },
+      };
+    }
+  },
 };

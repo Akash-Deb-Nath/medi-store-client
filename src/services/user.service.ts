@@ -1,10 +1,67 @@
 import { env } from "@/env";
 import { cookies } from "next/headers";
+import { CustomerProfile, SellerProfile } from "@/types/user.type";
 
 const AUTH_URL = env.AUTH_URL;
 const API_URL = env.API_URL;
 
 export const userService = {
+  createCustomer: async function (payload: CustomerProfile) {
+    try {
+      const cookieStore = await cookies();
+      const res = await fetch(`${API_URL}/user/completeProfile`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: cookieStore.toString(),
+        },
+        credentials: "include",
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!data) {
+        return {
+          data: null,
+          error: "Something went wrong",
+        };
+      }
+      return { data: data, error: null };
+    } catch (error: any) {
+      console.error("Creating Customer profile error", error);
+      return {
+        data: null,
+        error: { message: error.message || "Something went wrong" },
+      };
+    }
+  },
+  createSeller: async function (payload: SellerProfile) {
+    try {
+      const cookieStore = await cookies();
+      const res = await fetch(`${API_URL}/user/completeProfile`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: cookieStore.toString(),
+        },
+        credentials: "include",
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!data) {
+        return {
+          data: null,
+          error: "Something went wrong",
+        };
+      }
+      return { data: data, error: null };
+    } catch (error: any) {
+      console.error("Creating Seller profile error", error);
+      return {
+        data: null,
+        error: { message: error.message || "Something went wrong" },
+      };
+    }
+  },
   getSession: async function () {
     try {
       const cookieStore = await cookies();

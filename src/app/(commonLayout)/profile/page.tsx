@@ -1,6 +1,5 @@
 import { getSession } from "@/actions/user.action";
 import UserCard from "@/components/modules/userPage/userCard";
-import { userService } from "@/services/user.service";
 import { redirect } from "next/navigation";
 
 const ProfilePage = async() => {
@@ -8,6 +7,7 @@ const ProfilePage = async() => {
             if (user.data===null) {
                 redirect("/login");
             }
+            console.log(user);
     return (
         <div className="p-10">
             <UserCard user={user.data} />

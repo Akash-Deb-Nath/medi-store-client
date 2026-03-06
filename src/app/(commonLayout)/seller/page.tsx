@@ -4,7 +4,7 @@ import { userService } from '@/services/user.service';
 const SellerPage = async () => {
     const {data}=await userService.getSession();
         return (
-            <div className="p-10">
+            <div className="flex justify-center p-10">
                 <UserCard user={data.user} />
             </div>
         );

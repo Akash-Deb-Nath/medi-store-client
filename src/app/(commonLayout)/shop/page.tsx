@@ -19,6 +19,7 @@ export default function ShopPage() {
         const { data } = await getMedicines({
           search: searchTerm,
         });
+        console.log(data);
         setMedicines(data || []);
       } catch (err) {
         console.error("Failed to fetch medicines", err);
