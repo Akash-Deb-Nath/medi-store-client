@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
       "images.unsplash.com",
       "new.com",
       "i.ibb.co.com",
+      "lh3.googleusercontent.com",
     ],
   },
   async rewrites() {

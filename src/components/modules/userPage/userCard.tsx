@@ -39,7 +39,7 @@ export default function UserCard({user} : UserCardProps) {
 // };
 
   return (
-    <Card className="group w-50 overflow-hidden rounded-2xl transition hover:-translate-y-1 hover:shadow-xl">
+    <Card className="group w-100 overflow-hidden rounded-2xl transition hover:-translate-y-1 hover:shadow-xl">
       <div className="relative w-30 h-30">
   <Image
     src={image || "/ProfilePicture.png"}

@@ -3,14 +3,14 @@ import UserCard from "@/components/modules/userPage/userCard";
 import { redirect } from "next/navigation";
 
 const ProfilePage = async() => {
-    const user=await getSession();
-            if (user.data===null) {
+    const {data,error}=await getSession();
+            if (data===null) {
                 redirect("/login");
             }
-            console.log(user);
+            console.log(data.user);
     return (
-        <div className="p-10">
-            <UserCard user={user.data} />
+        <div className="flex justify-center items-center p-10">
+            <UserCard user={data.user} />
         </div>
     );
 };
