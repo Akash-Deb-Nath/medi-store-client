@@ -4,6 +4,8 @@
 
 Frontend application for **MediStore**, a full-stack OTC medicine e-commerce platform.
 
+Live Link: https://medi-store-client-alpha.vercel.app/
+
 This application provides UI for:
 
 - 🧑 Customers to browse and order medicines
