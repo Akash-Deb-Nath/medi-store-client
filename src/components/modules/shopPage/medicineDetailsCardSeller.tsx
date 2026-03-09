@@ -88,6 +88,7 @@ export default function MedicineDetailsCardCustomer({ medicine }: MedicineCardPr
         const toastId = toast.loading("Adding review...");
         try {
           const { data, error } = await addReviews(medicine.id, value);
+          console.log(data);
           if (error || data?.success === false) {
             toast.error(data?.message || "Failed to add review", { id: toastId });
             return;
@@ -149,7 +150,9 @@ export default function MedicineDetailsCardCustomer({ medicine }: MedicineCardPr
           Add to Cart
         </Button>
         <div className="mt-4">
-          <h4 className="font-semibold">Reviews</h4>
+          <h4 className="font-semibold">
+  Reviews: {reviews.length === 0 ? <p className="flex justify-center items-center">Loading...</p> : reviews.length}
+</h4>
 
           <div className="flex flex-col gap-2 my-5">
             <form id="review-form"

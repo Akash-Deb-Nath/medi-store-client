@@ -21,7 +21,7 @@ const formSchema = z.object({
   name: z.string().min(1, "This field is required"),
   email: z.email("Invalid email address"),
   password: z.string().min(8, "Password must be at least 8 characters"),
-  imageUrl: z.string()
+  image: z.string()
   .refine((val) => val === "" || z.url().safeParse(val).success, "Must be a valid URL"),
   phoneNumber: z.string()
   .refine((val) => val === "" || /^\+?[0-9]{10,15}$/.test(val), "Invalid phone number"),
@@ -39,7 +39,7 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
       name:"",
       email:"",
       password:"",
-      imageUrl:"",
+      image:"",
       phoneNumber:"",
     },
     validators:{
@@ -138,7 +138,7 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
             }}
             />
             <form.Field
-            name="imageUrl" children={(field)=>{
+            name="image" children={(field)=>{
               const isInvalid =
                 field.state.meta.isTouched && !field.state.meta.isValid
               return(

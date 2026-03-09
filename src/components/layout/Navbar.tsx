@@ -90,6 +90,7 @@ const Navbar = ({
   className,
 }: NavbarProps) => {
   const user = useSessionContext();
+  console.log(user);
   role = user?.role as UserRole || role;
   const menu = getMenuByRole(role);
 
