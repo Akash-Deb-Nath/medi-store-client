@@ -10,3 +10,7 @@ export const checkout = async () => {
 export const getOrders = async () => {
   return await orderService.getOrders();
 };
+
+export const updateOrderStatus = async (orderId: string, newStatus: string) => {
+  return await orderService.updateStatus(orderId, newStatus);
+};

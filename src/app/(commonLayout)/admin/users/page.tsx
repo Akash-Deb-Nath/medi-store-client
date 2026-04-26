@@ -1,18 +1,32 @@
-import UserCard from '@/components/modules/userPage/userCard';
-import { userService } from '@/services/user.service';
-import { User } from '@/types/user.type';
+import UsersTable from "@/components/modules/userPage/usersPage";
+import { userService } from "@/services/user.service";
 
-const UsersPage = async() => {
-    const {data}=await userService.getAllUsers();
-    return (
-        <div className="flex justify-center">
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 py-10 px-5">
-    {data?.map((user: User) => (
-      <UserCard key={user.id} user={user} />
-    ))}
-  </div>
-</div>
-    );
+const UsersPage = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) => {
+  const params = await searchParams;
+  const currentPage = Number(params.page) || 1;
+
+  const { data, pagination, error } = await userService.getAllUsers(currentPage, 10);
+
+  if (error) {
+    return <div className="p-10 text-red-500">Error: {error.message}</div>;
+  }
+
+  return (
+    <div className="px-6 md:px-10 py-6 space-y-6">
+      <h1 className="text-2xl font-bold">Manage Users</h1>
+      
+      <UsersTable 
+        data={data} 
+        currentPage={pagination.page} 
+        totalPages={pagination.totalPages}
+        totalUsers={pagination.total}
+      />
+    </div>
+  );
 };
 
 export default UsersPage;

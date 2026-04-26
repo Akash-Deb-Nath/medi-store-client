@@ -24,12 +24,17 @@ const handleCheckout=async()=>{
         const toastId=toast.loading("Placing order...");
         try {
         const { data, error } = await checkout();
+        console.log(data);
+        if (data?.url) {
+          window.location.href = data.url;
+          return;
+        }
         if (error) {
           toast.error("Failed to place order",{id:toastId});
           return;
         }
         toast.success("Order placed successfully",{id:toastId});
-        window.location.href = "/orders";
+        // window.location.href = "/orders";
         } catch (error) {
         toast.error("Something went wrong, please try again.",{id:toastId});
         }

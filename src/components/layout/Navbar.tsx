@@ -142,10 +142,10 @@ const Navbar = ({
               </>
             ) : (
               <>
-                <Button asChild size="sm">
+                <Button size="sm">
                   <Link href={auth.login.url}>{auth.login.title}</Link>
                 </Button>
-                <Button asChild size="sm">
+                <Button size="sm">
                   <Link href={auth.register.url}>{auth.register.title}</Link>
                 </Button>
               </>
@@ -161,7 +161,7 @@ const Navbar = ({
               MediStore
             </Link>
             <Sheet>
-              <SheetTrigger asChild>
+              <SheetTrigger>
                 <Button variant="outline" size="icon">
                   <Menu className="size-4" />
                 </Button>
@@ -175,7 +175,7 @@ const Navbar = ({
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-6 p-4">
-                  <Accordion type="single" collapsible className="flex w-full flex-col gap-4">
+                  <Accordion className="flex w-full flex-col gap-4">
                     {menu.map((item) => renderMobileMenuItem(item))}
                   </Accordion>
 
@@ -198,10 +198,10 @@ const Navbar = ({
                       </>
                     ) : (
                       <>
-                        <Button asChild size="sm">
+                        <Button size="sm">
                           <Link href={auth.login.url}>{auth.login.title}</Link>
                         </Button>
-                        <Button asChild size="sm">
+                        <Button size="sm">
                           <Link href={auth.register.url}>{auth.register.title}</Link>
                         </Button>
                       </>
@@ -220,7 +220,7 @@ const Navbar = ({
 const renderMenuItem = (item: MenuItem) => (
   <NavigationMenuItem key={item.title}>
     <NavigationMenuLink
-      asChild
+    
       className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground"
     >
       <Link href={item.url}>{item.title}</Link>

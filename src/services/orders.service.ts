@@ -53,4 +53,22 @@ export const orderService = {
       return { data: null, error: { message: "Something went wrong" } };
     }
   },
+  updateStatus: async function (orderId: string, newStatus: string) {
+    try {
+      const cookieStore = await cookies();
+      const res = await fetch(`${API_URL}/order/${orderId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: cookieStore.toString(),
+        },
+        cache: "no-store",
+        body: JSON.stringify({ status: newStatus }),
+      });
+      const data = await res.json();
+      return { data: data, error: null };
+    } catch (error) {
+      return { data: null, error: { message: "Something went wrong" } };
+    }
+  },
 };
