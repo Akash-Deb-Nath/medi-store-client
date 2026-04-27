@@ -64,7 +64,7 @@ const LogoBrandDownload = ({
 
   return (
     <ContextMenu>
-      <ContextMenuTrigger asChild>
+      <ContextMenuTrigger>
         <div className={cn("inline-block", className)}>{children}</div>
       </ContextMenuTrigger>
       <ContextMenuContent className="w-48">

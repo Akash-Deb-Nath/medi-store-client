@@ -48,12 +48,16 @@ const handleCheckout=async()=>{
         <p><span className="font-bold">Shipping Address:</span> {shippingAddress}</p>
       </CardContent>
 
-      <CardFooter className="p-4 pt-0">
+      <CardFooter className="p-4 pt-0 flex flex-col gap-3">
+        <div>
+          <p><small className="font-bold">To place an order, click the "Pay Now" button below.</small></p>
+          <p><small><span className="text-red-500">*</span>By clicking "Pay Now", you agree to our terms and conditions.</small></p>
+        </div>
         <Button
           className="w-full"
           onClick={()=>handleCheckout()}
         >
-          Place Order
+          Pay Now
         </Button>
       </CardFooter>
     </Card>
