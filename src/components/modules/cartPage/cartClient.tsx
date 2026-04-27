@@ -26,7 +26,7 @@ export default function CartClient({ payload }: CartClientProps) {
         <>
           <div className="flex justify-around items-center">
             <h1>
-              <span className="font-bold">Total:</span> {totalPrice} Tk
+              <span className="font-bold">Total:</span> Tk {totalPrice}
             </h1>
             <Link href={"/checkout"}>
               <Button>Checkout</Button>

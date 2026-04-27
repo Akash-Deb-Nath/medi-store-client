@@ -39,7 +39,7 @@ export default function OrderItemCard({orderItem} : OrderItemCardProps) {
 
         <div className="flex flex-col w-full gap-3">
     <h1 className="text-lg font-bold text-blue-600">{medicine.name}</h1>
-    <p className="text-sm">Price: {price} Tk</p>
+    <p className="text-sm">Price: Tk {price}</p>
     <p className="text-sm">Quantity: {quantity} pcs</p>
 </div>
       </CardContent>

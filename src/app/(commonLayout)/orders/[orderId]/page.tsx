@@ -13,7 +13,7 @@ const OrderItemPage = async ({ params }:OrderItemPageProps) => {
         <div className='flex flex-col gap-3'>
             <div className='px-16 flex flex-col gap-3'>
                 <h1 className='text-2xl font-bold my-4'>Order details:</h1>
-            <p><span className="font-bold">Total Price:</span> ${data.totalPrice}</p>
+            <p><span className="font-bold">Total Price:</span> Tk {data.totalPrice}</p>
             <p><span className="font-bold">Quantity:</span> {data.items.length}</p>
             <p><span className="font-bold">Status:</span> {data.status}</p>
             <p><span className="font-bold">Ordered At:</span> {new Date(data.orderedAt).toLocaleString()}</p>

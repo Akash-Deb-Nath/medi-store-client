@@ -72,7 +72,7 @@ const OrdersTable = ({ data, role }: OrdersTableProps) => {
                 #{order.id.slice(0, 8)}
               </TableCell>
 
-              <TableCell>৳{order.totalPrice}</TableCell>
+              <TableCell>Tk {order.totalPrice}</TableCell>
 
               <TableCell>
                 {new Date(order.orderedAt).toLocaleDateString()}

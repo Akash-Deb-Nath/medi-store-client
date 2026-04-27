@@ -44,7 +44,7 @@ export default function CartItemCard({ cartItem, onRemove }: CartItemCardProps) 
         <div className="flex justify-around items-center w-full">
           <div>
             <h1 className="text-lg font-bold text-blue-600">{medicine.name}</h1>
-            <p className="text-sm">Price: {price} Tk</p>
+            <p className="text-sm">Price: Tk {price}</p>
             <p className="text-sm">Quantity: {quantity} pcs</p>
           </div>
           <div>

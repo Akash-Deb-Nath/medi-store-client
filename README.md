@@ -26,6 +26,16 @@ Users select their role during registration.
 
 ---
 
+## 🚀 Key Highlights
+
+- ⚡ **Next.js 15 App Router:** Fast, SEO-friendly server-side rendering.
+- 🔐 **Better Auth Integration:** Secure role-based session management.
+- 💳 **Secure Checkout:** Integrated with **Stripe** for safe transactions.
+- 📊 **Optimized Tables:** Server-side pagination and filtering for large datasets.
+- 📱 **Responsive Design:** Fully mobile-responsive UI built with Tailwind CSS.
+
+---
+
 # 👥 Roles & Permissions
 
 | Role     | Description                  | Key Permissions                                    |
@@ -64,7 +74,8 @@ Typical Frontend Stack (Example):
 
 - Register and login as Customer
 - Add medicines to cart
-- Place orders with shipping address (Cash on Delivery)
+- Place orders with shipping address
+- Online payment using stripe
 - Track order status
 - Leave reviews after ordering
 - Manage profile
@@ -122,7 +133,7 @@ Typical Frontend Stack (Example):
 
 | Route               | Page           | Description         |
 | ------------------- | -------------- | ------------------- |
-| `/seller`           | Seller Profile | Seller Profile |
+| `/seller`           | Seller Profile | Seller Profile      |
 | `/seller/medicines` | Inventory      | Manage medicines    |
 | `/seller/orders`    | Orders         | Update order status |
 
@@ -170,7 +181,6 @@ src/
 
 # 📦 Future Improvements
 
-- 💳 Online Payment Integration
 - 📊 Seller Analytics Dashboard
 - 🔔 Real-time Notifications
 - ⭐ Advanced Review System

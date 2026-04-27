@@ -44,7 +44,7 @@ const handleCheckout=async()=>{
     <Card className="w-80 group overflow-hidden rounded-2xl">
  
       <CardContent className="flex flex-wrap space-y-2">
-        <p><span className="font-bold">Total Price:</span> {totalPrice} Tk</p>
+        <p><span className="font-bold">Total Price:</span> Tk {totalPrice}</p>
         <p><span className="font-bold">Shipping Address:</span> {shippingAddress}</p>
       </CardContent>
 
